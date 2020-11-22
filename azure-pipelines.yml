@@ -22,11 +22,6 @@ steps:
     goals: 'package'
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-- task: PublishBuildArtifacts@1
-  inputs:
     PathtoPublish: '$(System.DefaultWorkingDirectory)/target'
     ArtifactName: 'test'
     publishLocation: 'Container'
