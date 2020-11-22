@@ -25,3 +25,9 @@ steps:
     PathtoPublish: '$(System.DefaultWorkingDirectory)/target'
     ArtifactName: 'test'
     publishLocation: 'Container'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'private_docker_connection'
+    repository: 'azure_test'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
