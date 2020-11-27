@@ -10,6 +10,11 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- script: |
+    APP_REVISION="master-$(Build.SourceVersion)"
+    echo "##vso[task.setvariable variable=APP_REVISION]${APP_REVISION}"
+    echo "Generated Docker tag: ${APP_REVISION}"
+  displayName: 'Generate Docker tag'
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -31,3 +36,6 @@ steps:
     repository: 'jaadds/azure_test'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
+    tags: |
+      latest
+      $(APP_REVISION)
